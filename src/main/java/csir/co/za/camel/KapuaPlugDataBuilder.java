@@ -91,11 +91,11 @@ public class KapuaPlugDataBuilder extends RouteBuilder{
 
         LOG.info("Configuring Camel Route ... uri = " + kapuaPlugDataUri);
 
-        from(kapuaPlugDataUri)
-                .process(plugDataStorage)
-//        .process(rabbitMqPreparationProcessor)
-        //.toD(rabbitMqUri)
-        .toD(kapuaPlugDataFrontEnd)
+//        from(kapuaPlugDataUri)
+//                .process(plugDataStorage)
+////        .process(rabbitMqPreparationProcessor)
+//        //.toD(rabbitMqUri)
+//        .toD(kapuaPlugDataFrontEnd)
         //.process(kafKaPreparationProcessor)
         //.to(kafkaUri)
         ;

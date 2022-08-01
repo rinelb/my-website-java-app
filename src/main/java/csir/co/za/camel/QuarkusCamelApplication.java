@@ -42,14 +42,14 @@ public class QuarkusCamelApplication implements QuarkusApplication {
 
         // lets use a configuration class (you can specify multiple classes)
         // (properties are automatic loaded from application.properties)
-        main.configure().addConfigurationClass(QuarkusCamelApplicationConfiguration.class);
+//        main.configure().addConfigurationClass(QuarkusCamelApplicationConfiguration.class);
 
-        main.configure().addRoutesBuilder(KapuaPlugDataBuilder.class);
+       // main.configure().addRoutesBuilder(KapuaPlugDataBuilder.class);
 
         // and add the routes (you can specify multiple classes)
         //main.configure().addRoutesBuilder(KapuaRouteBuilder.class);
         LOG.info(" *********  adding Birth Certificate Router");
-        main.configure().addRoutesBuilder(KapuaBirthCertificateRouteBuilder.class);
+       // main.configure().addRoutesBuilder(KapuaBirthCertificateRouteBuilder.class);
 
 
 

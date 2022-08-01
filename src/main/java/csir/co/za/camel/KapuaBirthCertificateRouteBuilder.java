@@ -52,8 +52,8 @@ public class KapuaBirthCertificateRouteBuilder extends RouteBuilder {
 
         LOG.info("Configuring Camel Route ... uri = " + kapuaUri);
 
-        from(kapuaUri)
-                .process(databaseStorageProcessor)
+//        from(kapuaUri)
+//                .process(databaseStorageProcessor)
         //.process(rabbitMqPreparationProcessor)
         //.to(rabbitMqUri)
         //.process(kafKaPreparationProcessor)

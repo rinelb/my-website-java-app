@@ -14,7 +14,7 @@ import csir.co.za.camel.PropertiesUtility;
 import java.util.Objects;
 
 @Entity
-@Table(name="device",
+@Table(name="sanskrit",
         uniqueConstraints= @UniqueConstraint(columnNames={"device_id"}))
 public class Device extends PanacheEntity {
     private static final Logger LOG = Logger.getLogger(Device.class);

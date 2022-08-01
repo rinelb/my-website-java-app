@@ -103,7 +103,7 @@ public class PlugData extends PanacheEntity {
     public static PlugData insertData(PlugData device) {
 //        LOG.info(" device.getDeviceId(): "+ device.getDeviceId()   );
 
-           device.persist(); //insert
+        device.persist(); //insert
 //
 
         return device;
@@ -125,7 +125,7 @@ public class PlugData extends PanacheEntity {
         if (!Objects.equals(current, device.current)) return false;
         if (!Objects.equals(actuation, device.actuation)) return false;
 
-    return Objects.equals(status, device.status);
+        return Objects.equals(status, device.status);
     }
 
     @Override
