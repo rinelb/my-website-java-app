@@ -50,7 +50,7 @@ public class SankritResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String findByKnowledge(@PathParam("word") String word) {
-        String answer = Sankrit.findByword(word);
+        String answer = Sankrit.findByKnowledge(word);
         LOG.info(answer);
 //        answer = answer.replace("Device","");
         return answer;
