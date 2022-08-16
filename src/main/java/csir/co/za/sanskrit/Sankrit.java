@@ -32,6 +32,9 @@ public class Sankrit extends PanacheEntity {
     @Column(name="words")
     private String Words = null;
 
+    @Column(name="sanskrit")
+    private String Sanskrit = null;
+
     @Column(name="phonics")
     private String Phonics = null;
 
@@ -56,6 +59,12 @@ public class Sankrit extends PanacheEntity {
     }
 
     public String getPhonics() { return Phonics;    }
+
+    public void setSanskrit(String Phonics) {
+        this.Sanskrit = Sanskrit;
+    }
+
+    public String getSanskrit() { return Sanskrit;    }
 
 
     public void setWords(String Words) {
@@ -159,7 +168,7 @@ public class Sankrit extends PanacheEntity {
 
 
 //        return find("words ",word).firstResult();
-        List<Sankrit> allwords = find("words ",word).list();
+        List<Sankrit> allwords = find("words",word).list();
         String jsonBuild = "[";
         for (int j=0;j<allwords.size();j++){
             jsonBuild = jsonBuild + "{";
@@ -169,6 +178,40 @@ public class Sankrit extends PanacheEntity {
             jsonBuild = jsonBuild + "\"audio\":\""+allwords.get(j).AudioLocation+"\",";
             jsonBuild = jsonBuild + "\"sloka\":\""+allwords.get(j).SlokaInfo+"\",";
             jsonBuild = jsonBuild + "\"knowledge\":\""+allwords.get(j).KnowledgeOrigin+"\",";
+            jsonBuild = jsonBuild + "\"sankrit\":\""+allwords.get(j).Sanskrit+"\",";
+            jsonBuild = jsonBuild + "\"phonic\":\""+allwords.get(j).Phonics+"\"}";
+            if (j < allwords.size()-1){
+                jsonBuild = jsonBuild + ",";
+            }
+            LOG.info(j + " "+allwords.get(j).Meaning);
+        }
+        jsonBuild = jsonBuild + "]";
+
+        return jsonBuild;
+    }
+
+
+    @Transactional
+    public static String findByKnowledge(String word){
+        LOG.info("plugDeviceKey = "+ word);
+        //LOG.info( "find = "+PlugDevice.find("SELECT * FROM plugdevice WHERE plug_device_key ='"+plugDeviceKey+"'").firstResult());
+        //LOG.info( "find = "+PlugDevice.find("plug_device_key ",plugDeviceKey).firstResult());
+        //return  find("plug_device_key",plugDeviceKey).firstResult();
+
+
+
+//        return find("words ",word).firstResult();
+        List<Sankrit> allwords = find("knowledge_origin",word).list();
+        String jsonBuild = "[";
+        for (int j=0;j<allwords.size();j++){
+            jsonBuild = jsonBuild + "{";
+            jsonBuild = jsonBuild + "\"meaning\":\""+allwords.get(j).Meaning+"\",";
+            jsonBuild = jsonBuild + "\"word\":\""+allwords.get(j).Words+"\",";
+            jsonBuild = jsonBuild + "\"has\":\""+allwords.get(j).HasAudio+"\",";
+            jsonBuild = jsonBuild + "\"audio\":\""+allwords.get(j).AudioLocation+"\",";
+            jsonBuild = jsonBuild + "\"sloka\":\""+allwords.get(j).SlokaInfo+"\",";
+            jsonBuild = jsonBuild + "\"knowledge\":\""+allwords.get(j).KnowledgeOrigin+"\",";
+            jsonBuild = jsonBuild + "\"sankrit\":\""+allwords.get(j).Sanskrit+"\",";
             jsonBuild = jsonBuild + "\"phonic\":\""+allwords.get(j).Phonics+"\"}";
             if (j < allwords.size()-1){
                 jsonBuild = jsonBuild + ",";

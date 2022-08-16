@@ -36,10 +36,20 @@ public class SankritResource {
 
 
     //example http://localhost:8080/plug/device/plug0
-    @Path("/{word}")
+    @Path("/word/{word}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String findById(@PathParam("word") String word) {
+    public String findByWord(@PathParam("word") String word) {
+        String answer = Sankrit.findByword(word);
+        LOG.info(answer);
+//        answer = answer.replace("Device","");
+        return answer;
+    }
+
+    @Path("/knowledge/{word}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String findByKnowledge(@PathParam("word") String word) {
         String answer = Sankrit.findByword(word);
         LOG.info(answer);
 //        answer = answer.replace("Device","");
@@ -80,6 +90,7 @@ public class SankritResource {
                     + jsonObject.getString("word")+" "
                     + jsonObject.getString("mean")+" "
                     + jsonObject.getString("phonic")+" "
+                    + jsonObject.getString("sanskrit")+" "
                     + jsonObject.getString("sloka")+" "
                     + jsonObject.getString("has")+" "
                     + jsonObject.getString("audio")+" " );
@@ -89,6 +100,7 @@ public class SankritResource {
             sankrit.setWords(jsonObject.getString("word"));
             sankrit.setSlokaInfo(jsonObject.getString("sloka"));
             sankrit.setHasAudio(jsonObject.getString("has"));
+            sankrit.setSanskrit("स्");
             sankrit.setKnowledgeOrigin(jsonObject.getString("know"));
             sankrit.setPhonics(jsonObject.getString("phonic"));
             String ans = Sankrit.createword(sankrit);
